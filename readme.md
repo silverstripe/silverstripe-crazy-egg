@@ -1,4 +1,4 @@
-# Share Crazy Egg
+# SilverStripe Crazy Egg
 
 [![Build Status](http://img.shields.io/travis/assertchris/silverstripe-crazy-egg.svg?style=flat-square)](https://travis-ci.org/assertchris/silverstripe-crazy-egg)
 [![Code Quality](http://img.shields.io/scrutinizer/g/assertchris/silverstripe-crazy-egg.svg?style=flat-square)](https://scrutinizer-ci.com/g/assertchris/silverstripe-crazy-egg)
