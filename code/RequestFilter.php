@@ -11,6 +11,11 @@ use ViewableData;
 class RequestFilter implements \RequestFilter
 {
     /**
+     * @var bool
+     */
+    private static $installed = false;
+
+    /**
      * @var ViewableData
      */
     private $tagProvider;
@@ -39,10 +44,12 @@ class RequestFilter implements \RequestFilter
         if (!$mime || strpos($mime, "text/html") !== false) {
             $tags = $this->tagProvider->forTemplate();
 
-            if ($tags) {
+            if ($tags && !static::$installed) {
                 $content = $response->getBody();
                 $content = preg_replace("/(<\\/head[^>]*>)/i", $tags . "\\1", $content);
                 $response->setBody($content);
+
+                static::$installed = true;
             }
         }
     }
