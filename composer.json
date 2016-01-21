@@ -1,0 +1,19 @@
+{
+    "name": "silverstripe/crazy-egg",
+    "description": "SilverStripe integration with Crazy Egg",
+    "type": "silverstripe-module",
+    "require": {
+        "php": "^5.3",
+        "silverstripe/framework": "^3.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8"
+    },
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Christopher Pitt",
+            "email": "cgpitt@gmail.com"
+        }
+    ]
+}

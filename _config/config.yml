@@ -1,0 +1,8 @@
+Injector:
+  SilverStripe\CrazyEgg\RequestFilter:
+    properties:
+      TagProvider: %$SilverStripe\CrazyEgg\TagProvider
+  RequestProcessor:
+    properties:
+      filters:
+        - '%$SilverStripe\CrazyEgg\RequestFilter'
