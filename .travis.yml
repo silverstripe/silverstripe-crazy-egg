@@ -27,7 +27,7 @@ before_script:
   - composer install
 
 script:
-  - vendor/bin/phpunit --coverage-clover coverage.clover crazy-egg/tests
+  - vendor/bin/phpunit crazy-egg/tests
 
 branches:
   only:
