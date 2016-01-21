@@ -2,7 +2,6 @@
 
 [![Build Status](http://img.shields.io/travis/assertchris/silverstripe-crazy-egg.svg?style=flat-square)](https://travis-ci.org/assertchris/silverstripe-crazy-egg)
 [![Code Quality](http://img.shields.io/scrutinizer/g/assertchris/silverstripe-crazy-egg.svg?style=flat-square)](https://scrutinizer-ci.com/g/assertchris/silverstripe-crazy-egg)
-[![Code Coverage](http://img.shields.io/scrutinizer/coverage/g/assertchris/silverstripe-crazy-egg.svg?style=flat-square)](https://scrutinizer-ci.com/g/assertchris/silverstripe-crazy-egg)
 [![Version](http://img.shields.io/packagist/v/silverstripe/crazy-egg.svg?style=flat-square)](https://packagist.org/packages/silverstripe/silverstripe-crazy-egg)
 [![License](http://img.shields.io/packagist/l/silverstripe/crazy-egg.svg?style=flat-square)](LICENSE.md)
 
