@@ -1,7 +1,7 @@
 # SilverStripe Crazy Egg
 
-[![Build Status](http://img.shields.io/travis/assertchris/silverstripe-crazy-egg.svg?style=flat-square)](https://travis-ci.org/assertchris/silverstripe-crazy-egg)
-[![Code Quality](http://img.shields.io/scrutinizer/g/assertchris/silverstripe-crazy-egg.svg?style=flat-square)](https://scrutinizer-ci.com/g/assertchris/silverstripe-crazy-egg)
+[![Build Status](http://img.shields.io/travis/robbieaverill/silverstripe-crazy-egg.svg?style=flat-square)](https://travis-ci.org/robbieaverill/silverstripe-crazy-egg)
+[![Code Quality](http://img.shields.io/scrutinizer/g/robbieaverill/silverstripe-crazy-egg.svg?style=flat-square)](https://scrutinizer-ci.com/g/robbieaverill/silverstripe-crazy-egg)
 [![Version](http://img.shields.io/packagist/v/silverstripe/crazy-egg.svg?style=flat-square)](https://packagist.org/packages/silverstripe/silverstripe-crazy-egg)
 [![License](http://img.shields.io/packagist/l/silverstripe/crazy-egg.svg?style=flat-square)](LICENSE.md)
 
@@ -39,4 +39,4 @@ All methods, with `public` visibility, are part of the public API. All other met
 
 ## Reporting Issues
 
-Please [create an issue](http://github.com/assertchris/silverstripe-crazy-egg/issues) for any bugs you've found, or features you're missing.
+Please [create an issue](http://github.com/robbieaverill/silverstripe-crazy-egg/issues) for any bugs you've found, or features you're missing.
