@@ -17,7 +17,8 @@ This module integrates Crazy Egg tracking with SilverStripe.
 
 ## Requirements
 
-- SilverStripe ^3.1
+- SilverStripe ^4.0
+- PHP 5.5 or above
 
 ## Installation
 

@@ -2,14 +2,14 @@
 
 namespace SilverStripe\CrazyEgg\Tests;
 
-use DataModel;
-use DBField;
-use SapphireTest;
-use Session;
+use SilverStripe\Control\HTTPRequest;
+use SilverStripe\Control\HTTPResponse;
+use SilverStripe\Control\Session;
 use SilverStripe\CrazyEgg\RequestFilter;
-use SS_HTTPRequest;
-use SS_HTTPResponse;
-use ViewableData;
+use SilverStripe\Dev\SapphireTest;
+use SilverStripe\ORM\DataModel;
+use SilverStripe\ORM\FieldType\DBField;
+use SilverStripe\View\ViewableData;
 
 /**
  * @mixin PHPUnit_Framework_TestCase
@@ -19,7 +19,7 @@ class RequestFilterTest extends SapphireTest
     /**
      * @dataProvider sampleResponses
      *
-     * @param SS_HTTPResponse $response
+     * @param HTTPResponse $response
      * @param bool $match
      */
     public function testScriptInsertion($response, $match)
@@ -43,23 +43,25 @@ class RequestFilterTest extends SapphireTest
     }
 
     /**
-     * @return array
+     * @return array[]
      */
     public function sampleResponses()
     {
         $responses = array();
 
         $responses[] = array(
-            new SS_HTTPResponse("<html><head></head><body><p>regular response has script added</p></body></html>"),
+            new HTTPResponse("<html><head></head><body><p>regular response has script added</p></body></html>"),
             true
         );
 
         $responses[] = array(
-            new SS_HTTPResponse("<p>fragment doesn't have script added</p>"),
+            new HTTPResponse("<p>fragment doesn't have script added</p>"),
             false
         );
 
-        $response = new SS_HTTPResponse("<html><head></head><body><p>plain text response doesn't have script added</p></body></html>");
+        $response = new HTTPResponse(
+            "<html><head></head><body><p>plain text response doesn't have script added</p></body></html>"
+        );
         $response->addHeader("Content-Type", "text/plain");
 
         $responses[] = array($response, false);
@@ -68,14 +70,14 @@ class RequestFilterTest extends SapphireTest
     }
 
     /**
-     * @param SS_HTTPResponse $response
+     * @param HTTPResponse $response
      * @param ViewableData $tag
      *
-     * @return SS_HTTPResponse
+     * @return HTTPResponse
      */
-    function checkFilterForResponse(SS_HTTPResponse $response, ViewableData $tag)
+    public function checkFilterForResponse(HTTPResponse $response, ViewableData $tag)
     {
-        $request = new SS_HTTPRequest("GET", "/");
+        $request = new HTTPRequest("GET", "/");
         $model = new DataModel();
         $session = new Session(array());
 
