@@ -2,13 +2,14 @@
 
 namespace SilverStripe\CrazyEgg;
 
-use DataModel;
-use Session;
-use SS_HTTPRequest;
-use SS_HTTPResponse;
-use ViewableData;
+use SilverStripe\Control\HTTPRequest;
+use SilverStripe\Control\HTTPResponse;
+use SilverStripe\Control\RequestFilter as BaseRequestFilter;
+use SilverStripe\Control\Session;
+use SilverStripe\ORM\DataModel;
+use SilverStripe\View\ViewableData;
 
-class RequestFilter implements \RequestFilter
+class RequestFilter implements BaseRequestFilter
 {
     /**
      * @var bool
@@ -29,15 +30,9 @@ class RequestFilter implements \RequestFilter
     }
 
     /**
-     * @inheritdoc
-     *
-     * @param SS_HTTPRequest $request
-     * @param SS_HTTPResponse $response
-     * @param DataModel $model
-     *
-     * @return bool
+     * {@inheritDoc}
      */
-    public function postRequest(SS_HTTPRequest $request, SS_HTTPResponse $response, DataModel $model)
+    public function postRequest(HTTPRequest $request, HTTPResponse $response, DataModel $model)
     {
         $mime = $response->getHeader("Content-Type");
 
@@ -55,15 +50,9 @@ class RequestFilter implements \RequestFilter
     }
 
     /**
-     * @inheritdoc
-     *
-     * @param SS_HTTPRequest $request
-     * @param Session $session
-     * @param DataModel $model
-     *
-     * @return bool
+     * {@inheritDoc}
      */
-    public function preRequest(SS_HTTPRequest $request, Session $session, DataModel $model)
+    public function preRequest(HTTPRequest $request, Session $session, DataModel $model)
     {
         // TODO: segregate this interface
     }

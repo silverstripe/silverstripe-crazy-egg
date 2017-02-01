@@ -12,6 +12,6 @@ The `SilverStripe\CrazyEgg\TagProvider` class has a configuration value, `enable
 
 If you wish to show CrazyEgg only sometimes, you can update this configuration value at any time during your page load, with the following command. For example, you may choose to show CrazyEgg only on certain pages, or for certain users.
 
-```
-SilverStripe\CrazyEgg\TagProvider::config()->enabled = false;
+```php
+\SilverStripe\CrazyEgg\TagProvider::config()->enabled = false;
 ```

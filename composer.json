@@ -1,24 +1,30 @@
 {
-	"name": "silverstripe/crazy-egg",
-	"description": "SilverStripe integration with Crazy Egg",
-	"type": "silverstripe-module",
-	"require": {
-		"php": "^5.3",
-		"silverstripe/framework": "^3.1"
-	},
-	"require-dev": {
-		"phpunit/phpunit": "^4.8"
-	},
-	"license": "BSD-3-Clause",
-	"authors": [
-		{
-			"name": "Christopher Pitt",
-			"email": "cgpitt@gmail.com"
-		}
-	],
-	"extra": {
-		"branch-alias": {
-			"dev-master": "2.0.x-dev"
-		}
-	}
+    "name": "silverstripe/crazy-egg",
+    "description": "SilverStripe integration with Crazy Egg",
+    "type": "silverstripe-module",
+    "require": {
+        "php": ">=5.5",
+        "silverstripe/framework": "^4.0@dev"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8"
+    },
+    "license": "BSD-3-Clause",
+    "autoload": {
+        "psr-4": {
+            "SilverStripe\\CrazyEgg\\": "src/",
+            "SilverStripe\\CrazyEgg\\Tests\\": "tests"
+        }
+    },
+    "authors": [
+        {
+            "name": "Christopher Pitt",
+            "email": "cgpitt@gmail.com"
+        }
+    ],
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+        }
+    }
 }
