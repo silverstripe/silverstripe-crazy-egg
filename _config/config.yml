@@ -2,10 +2,10 @@
 Name: crazyeggconfig
 ---
 SilverStripe\Core\Injector\Injector:
-  SilverStripe\CrazyEgg\RequestFilter:
+  SilverStripe\CrazyEgg\CrazyEggMiddleware:
     properties:
-      TagProvider: %$SilverStripe\CrazyEgg\TagProvider
-  SilverStripe\Control\RequestProcessor:
+      TagProvider: '%$SilverStripe\CrazyEgg\TagProvider'
+  SilverStripe\Control\Director:
     properties:
-      filters:
-        - '%$SilverStripe\CrazyEgg\RequestFilter'
+      Middlewares:
+        CrazyEggMiddleware: '%$SilverStripe\CrazyEgg\CrazyEggMiddleware'

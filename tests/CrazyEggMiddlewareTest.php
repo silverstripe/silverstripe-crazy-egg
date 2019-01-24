@@ -5,16 +5,13 @@ namespace SilverStripe\CrazyEgg\Tests;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Control\HTTPResponse;
 use SilverStripe\Control\Session;
-use SilverStripe\CrazyEgg\RequestFilter;
+use SilverStripe\CrazyEgg\CrazyEggMiddleware;
+use SilverStripe\CrazyEgg\TagProvider;
 use SilverStripe\Dev\SapphireTest;
-use SilverStripe\ORM\DataModel;
 use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\View\ViewableData;
 
-/**
- * @mixin PHPUnit_Framework_TestCase
- */
-class RequestFilterTest extends SapphireTest
+class CrazyEggMiddlewareTest extends SapphireTest
 {
     /**
      * @dataProvider sampleResponses
@@ -32,12 +29,12 @@ class RequestFilterTest extends SapphireTest
         if ($match) {
             $this->assertRegExp(
                 "#<script>'use strict'</script></head>#is",
-                $this->checkFilterForResponse($response, $tag)->getBody()
+                $this->checkMiddlewareForResponse($response, $tag)->getBody()
             );
         } else {
             $this->assertNotRegExp(
                 "#<script>'use strict'</script></head>#is",
-                $this->checkFilterForResponse($response, $tag)->getBody()
+                $this->checkMiddlewareForResponse($response, $tag)->getBody()
             );
         }
     }
@@ -75,17 +72,18 @@ class RequestFilterTest extends SapphireTest
      *
      * @return HTTPResponse
      */
-    public function checkFilterForResponse(HTTPResponse $response, ViewableData $tag)
+    public function checkMiddlewareForResponse(HTTPResponse $response, ViewableData $tag)
     {
-        $request = new HTTPRequest("GET", "/");
-        $model = new DataModel();
+        $request = new HTTPRequest('GET', '/');
         $session = new Session(array());
+        $request->setSession($session);
 
-        $filter = new RequestFilter();
-        $filter->setTagProvider($tag);
+        $middleware = new CrazyEggMiddleware();
+        $middleware->setTagProvider($tag);
 
-        $filter->preRequest($request, $session, $model);
-        $filter->postRequest($request, $response, $model);
+        $response = $middleware->process($request, function () use ($response) {
+            return $response;
+        });
 
         return $response;
     }

@@ -2,6 +2,7 @@
 
 namespace SilverStripe\CrazyEgg;
 
+use SilverStripe\Core\Environment;
 use SilverStripe\ORM\FieldType\DBHTMLText;
 use SilverStripe\View\ViewableData;
 
@@ -17,10 +18,10 @@ class TagProvider extends ViewableData
      */
     public function isEnabled()
     {
-        if (!defined("CRAZY_EGG_APP_KEY")
-            || !defined("CRAZY_EGG_APP_SECRET")
-            || !defined("CRAZY_EGG_ACCOUNT_NUMBER")
-            || !$this->config()->enabled
+        if (!Environment::getEnv('CRAZY_EGG_APP_KEY')
+            || !Environment::getEnv('CRAZY_EGG_APP_SECRET')
+            || !Environment::getEnv('CRAZY_EGG_ACCOUNT_NUMBER')
+            || !$this->config()->get('enabled')
         ) {
             return false;
         }
@@ -37,14 +38,14 @@ class TagProvider extends ViewableData
             return null;
         }
 
-        $parts = str_split(CRAZY_EGG_ACCOUNT_NUMBER, 4);
-        $accountNumber = $parts[0] . "/" . $parts[1];
+        $parts = str_split(Environment::getEnv('CRAZY_EGG_ACCOUNT_NUMBER'), 4);
+        $accountNumber = $parts[0] . '/' . $parts[1];
 
         return $this->renderWith(
-            "CrazyEggScriptTags",
-            array(
-                "CrazyEggAccountNumber" => $accountNumber,
-            )
+            'CrazyEggScriptTags',
+            [
+                'CrazyEggAccountNumber' => $accountNumber,
+            ]
         );
     }
 }
