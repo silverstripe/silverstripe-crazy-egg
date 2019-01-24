@@ -4,22 +4,20 @@ namespace SilverStripe\CrazyEgg;
 
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Control\HTTPResponse;
-use SilverStripe\Control\RequestFilter as BaseRequestFilter;
-use SilverStripe\Control\Session;
-use SilverStripe\ORM\DataModel;
+use SilverStripe\Control\Middleware\HTTPMiddleware;
 use SilverStripe\View\ViewableData;
 
-class RequestFilter implements BaseRequestFilter
+class CrazyEggMiddleware implements HTTPMiddleware
 {
     /**
      * @var bool
      */
-    private static $installed = false;
+    protected static $installed = false;
 
     /**
      * @var ViewableData
      */
-    private $tagProvider;
+    protected $tagProvider;
 
     /**
      * @param ViewableData $tagProvider
@@ -29,14 +27,14 @@ class RequestFilter implements BaseRequestFilter
         $this->tagProvider = $tagProvider;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function postRequest(HTTPRequest $request, HTTPResponse $response, DataModel $model)
+    public function process(HTTPRequest $request, callable $delegate)
     {
-        $mime = $response->getHeader("Content-Type");
+        /** @var HTTPResponse $response */
+        $response = $delegate($request);
 
-        if (!$mime || strpos($mime, "text/html") !== false) {
+        $mime = $response->getHeader('Content-Type');
+
+        if (!$mime || strpos($mime, 'text/html') !== false) {
             $tags = $this->tagProvider->forTemplate();
 
             if ($tags && !static::$installed) {
@@ -47,13 +45,7 @@ class RequestFilter implements BaseRequestFilter
                 static::$installed = true;
             }
         }
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function preRequest(HTTPRequest $request, Session $session, DataModel $model)
-    {
-        // TODO: segregate this interface
+        return $response;
     }
 }
