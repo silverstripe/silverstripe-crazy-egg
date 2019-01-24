@@ -1,13 +1,13 @@
 {
     "name": "silverstripe/crazy-egg",
     "description": "SilverStripe integration with Crazy Egg",
-    "type": "silverstripe-module",
+    "type": "silverstripe-vendormodule",
     "require": {
         "php": ">=5.6",
-        "silverstripe/framework": "^4.0@dev"
+        "silverstripe/framework": "^4.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.8"
+        "phpunit/phpunit": "^5.7"
     },
     "license": "BSD-3-Clause",
     "autoload": {
@@ -26,5 +26,7 @@
         "branch-alias": {
             "dev-master": "2.0.x-dev"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
