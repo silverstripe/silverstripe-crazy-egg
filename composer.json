@@ -3,7 +3,7 @@
     "description": "SilverStripe integration with Crazy Egg",
     "type": "silverstripe-module",
     "require": {
-        "php": "^5.3",
+        "php": ">=5.3",
         "silverstripe/framework": "^3.1"
     },
     "require-dev": {
